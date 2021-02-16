@@ -1,0 +1,5 @@
+{
+  "name": "Home Assistant backup to S3",
+  "url": "https://github.com/CristianHenzel/hass-backup-s3",
+  "maintainer": "Cristian Henzel"
+}
