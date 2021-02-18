@@ -1,6 +1,6 @@
 {
   "name": "Home Assistant auto backup and sync to S3",
-  "version": "21.2.3",
+  "version": "21.2.4",
   "slug": "hassio-backup-s3",
   "description": "Automatically creates a full Home Assistant snapshot per day and syncs the backup folder to an S3 bucket every 10 minutes",
   "arch": ["amd64"],
@@ -9,7 +9,7 @@
   "boot": "auto",
   "map": ["backup", "config", "ssl"],
   "hassio_api": true,
-  "hassio_role": "admin",
+  "hassio_role": "manager",
   "options": {
     "backup_keep_days": 10,
     "run_interval": 600,
