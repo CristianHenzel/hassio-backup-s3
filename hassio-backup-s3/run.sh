@@ -35,13 +35,18 @@ cleanup() {
 		DATE=$(bashio::jq "${line}" ".date")
 		PROTECTED=$(bashio::jq "${line}" ".protected")
 		AGE=$(datediff "${NOW}" "${DATE}")
+		if [ -z "${NAME}" ]; then
+			FULLNAME="${SLUG}"
+		else
+			FULLNAME="$NAME (${SLUG})"
+		fi
 
 		if [ "${AGE}" -gt "${KEEP_DAYS}" ]; then
 			# TODO: Don't delete snapshot if it's protected
-			bashio::log.info "Deleting snapshot ${NAME} (${SLUG}) since it is ${AGE} days old"
+			bashio::log.info "Deleting snapshot ${FULLNAME} since it is ${AGE} days old"
 			bashio::api.supervisor "DELETE" "/snapshots/${SLUG}"
 		else
-			bashio::log.info "Skipping snapshot ${NAME} (${SLUG}) because it is only ${AGE} days old"
+			bashio::log.info "Skipping snapshot ${FULLNAME} because it is only ${AGE} days old"
 		fi
 	done <<< "${SNAPSHOTS}"
 }
