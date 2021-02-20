@@ -70,6 +70,9 @@ sync() {
 }
 
 while true; do
+	NOW=$(date -Iseconds)
+	SNAPSHOTS=$(bashio::api.supervisor "GET" "/snapshots" false ".snapshots[]")
+
 	init
 	createsnapshot
 	cleanup
